@@ -110,14 +110,14 @@
 			<fieldset>
 				<legend>What sort of being are you?</legend>
 				<label><input name="q1" type="radio" value="" required/>A skilled human</label>
-				<label><input name="q1" type="radio" value="Ranger:1,Wizard:1,Druid:1"/>A graceful <span class="race">elf</span></label>
-				<label><input name="q1" type="radio" value="Cleric:1,Fighter:1"/>A stolid <span class="race">dwarf</span></label>
-				<label><input name="q1" type="radio" value="Rogue:1,Monk:1"/>A stealthy <span class="race">halfling</span></label>
-				<label><input name="q1" type="radio" value="Wizard:1,Rogue:1,"/>A clever <span class="race">gnome</span></label>
-				<label><input name="q1" type="radio" value="Barbarian:1,Fighter:1"/>A brutish <span class="race">half-orc</span></label>
-				<label><input name="q1" type="radio" value="Bard:1,Paladin:1"/>A charming <span class="race">half-elf</span></label>
-				<label><input name="q1" type="radio" value="Warlock:1,Bard:1"/>A fearsome <span class="race">tiefling</span></label>
-				<label><input name="q1" type="radio" value="Paladin:1,Fighter:1,Sorcerer:1"/>A mighty <span class="race">dragonborn</span></label>
+				<label><input name="q1" type="radio" value="Ranger:1,Wizard:1,Druid:1"/>A graceful <a href="https://en.wikipedia.org/wiki/elf_(Dungeons_%26_Dragons)" target="_blank" class="race">elf</a></label>
+				<label><input name="q1" type="radio" value="Cleric:1,Fighter:1"/>A stolid <a href="https://en.wikipedia.org/wiki/dwarf_(Dungeons_%26_Dragons)" target="_blank" class="race">dwarf</a></label>
+				<label><input name="q1" type="radio" value="Rogue:1,Monk:1"/>A stealthy <a href="https://en.wikipedia.org/wiki/halfling_(Dungeons_%26_Dragons)" target="_blank" class="race">halfling</a></label>
+				<label><input name="q1" type="radio" value="Wizard:1,Rogue:1,"/>A clever <a href="https://en.wikipedia.org/wiki/gnome_(Dungeons_%26_Dragons)" target="_blank" class="race">gnome</a></label>
+				<label><input name="q1" type="radio" value="Barbarian:1,Fighter:1"/>A brutish <a href="https://en.wikipedia.org/wiki/Half-orc" target="_blank" class="race">half-orc</a></label>
+				<label><input name="q1" type="radio" value="Bard:1,Paladin:1"/>A charming <a href="https://en.wikipedia.org/wiki/half-elf_(Dungeons_%26_Dragons)" target="_blank" class="race">half-elf</a></label>
+				<label><input name="q1" type="radio" value="Warlock:1,Bard:1"/>A fearsome <a href="https://en.wikipedia.org/wiki/Tiefling" target="_blank" class="race">tiefling</a></label>
+				<label><input name="q1" type="radio" value="Paladin:1,Fighter:1,Sorcerer:1"/>A mighty <a href="https://en.wikipedia.org/wiki/dragonborn_(Dungeons_%26_Dragons)" target="_blank" class="race">dragonborn</a></label>
 			</fieldset>
 			<fieldset>
 				<legend>Your character should be:</legend>
@@ -193,8 +193,8 @@
 						highScore = possibleClasses[classname];
 					}
 				}
-				results.querySelector('.classMatch').innerHTML = classMatch;
-				results.querySelector('.raceMatch').innerHTML = answerRace.value.indexOf(classMatch) !== -1 ? answerRace.parentNode.querySelector('.race').innerHTML : '';
+				results.querySelector('.classMatch').innerHTML = '<a href="https://en.wikipedia.org/wiki/' + classMatch + '_(Dungeons_%26_Dragons)" target="_blank">' + classMatch + '</a>';
+				results.querySelector('.raceMatch').innerHTML = answerRace.value.indexOf(classMatch) !== -1 ? answerRace.parentNode.querySelector('.race').outerHTML : '';
 				window.location.hash = '#results';
 			});
 		</script>
