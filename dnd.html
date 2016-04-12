@@ -25,6 +25,7 @@
 			button {
 				font-size: 2rem;
 			}
+
 			#results {
 				background-color: #FFFFFF;
 				border: 5px solid black;
@@ -47,6 +48,7 @@
 				display: block;
 				font-size: 1rem;
 			}
+
 			#results .classMatch {
 				display: block;
 				font-size: 3.5rem;
@@ -60,9 +62,21 @@
 			#results .classMatch:before {
 				transform: scaleX(-1);
 			}
+
+			#results .raceMatch:empty {
+				display: none;
+			}
+			#results .raceMatch:before {
+				content: "(maybe a ";
+			} 
+			#results .raceMatch:after {
+				content: ")";
+			}
+
 			#results button {
 				margin-top: 20px;
 			}
+
 			.modal {
 				background-color: #FFFFFF;
 				opacity: 0;
@@ -74,6 +88,7 @@
 				right: 0;
 				z-index: -1;
 			}
+
 			#results:target {
 				opacity: 1;
 				z-index: 3;
@@ -95,14 +110,14 @@
 			<fieldset>
 				<legend>What sort of being are you?</legend>
 				<label><input name="q1" type="radio" value="" required/>A skilled human</label>
-				<label><input name="q1" type="radio" value="Ranger:1,Wizard:1,Druid:1"/>A graceful elf</label>
-				<label><input name="q1" type="radio" value="Cleric:1,Fighter:1"/>A stolid dwarf</label>
-				<label><input name="q1" type="radio" value="Rogue:1,Monk:1"/>A stealthy halfling</label>
-				<label><input name="q1" type="radio" value="Wizard:1,Rogue:1,"/>A clever gnome</label>
-				<label><input name="q1" type="radio" value="Barbarian:1,Fighter:1"/>A brutish half-orc</label>
-				<label><input name="q1" type="radio" value="Bard:1,Paladin:1"/>A charming half-elf</label>
-				<label><input name="q1" type="radio" value="Warlock:1,Bard:1"/>A fearsome tiefling</label>
-				<label><input name="q1" type="radio" value="Paladin:1,Fighter:1,Sorcerer:1"/>A mighty dragonborn</label>
+				<label><input name="q1" type="radio" value="Ranger:1,Wizard:1,Druid:1"/>A graceful <span class="race">elf</span></label>
+				<label><input name="q1" type="radio" value="Cleric:1,Fighter:1"/>A stolid <span class="race">dwarf</span></label>
+				<label><input name="q1" type="radio" value="Rogue:1,Monk:1"/>A stealthy <span class="race">halfling</span></label>
+				<label><input name="q1" type="radio" value="Wizard:1,Rogue:1,"/>A clever <span class="race">gnome</span></label>
+				<label><input name="q1" type="radio" value="Barbarian:1,Fighter:1"/>A brutish <span class="race">half-orc</span></label>
+				<label><input name="q1" type="radio" value="Bard:1,Paladin:1"/>A charming <span class="race">half-elf</span></label>
+				<label><input name="q1" type="radio" value="Warlock:1,Bard:1"/>A fearsome <span class="race">tiefling</span></label>
+				<label><input name="q1" type="radio" value="Paladin:1,Fighter:1,Sorcerer:1"/>A mighty <span class="race">dragonborn</span></label>
 			</fieldset>
 			<fieldset>
 				<legend>Your character should be:</legend>
@@ -146,6 +161,7 @@
 			<button type="submit">Tell me what D&amp;D class I should play!</button>
 			<div id="results">
 				<span class="classMatch"></span>
+				<span class="raceMatch"></span>
 				<button type="reset" href="#">Try Again?</button>
 			</div>
 			<div class="modal"></div>
@@ -158,6 +174,7 @@
 				e.preventDefault();
 				var results = document.getElementById('results'),
 					answers = document.querySelectorAll('input[type=radio]:checked'),
+					answerRace = answers[0],
 					possibleClasses = {}, 
 					highScore = 0, 
 					classMatch, i, ii, kva, k, v;
@@ -177,6 +194,7 @@
 					}
 				}
 				results.querySelector('.classMatch').innerHTML = classMatch;
+				results.querySelector('.raceMatch').innerHTML = answerRace.value.indexOf(classMatch) !== -1 ? answerRace.parentNode.querySelector('.race').innerHTML : '';
 				window.location.hash = '#results';
 			});
 		</script>
